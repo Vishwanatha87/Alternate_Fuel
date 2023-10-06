@@ -1,0 +1,33 @@
+trigger:
+- '*'
+
+pool:
+  vmImage: 'windows-latest'
+
+steps:
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: '3.x'
+    addToPath: true
+
+- script: |
+    git config --global user.email "vishwanath9216@gmail.com"
+    git config --global user.name "Vishwanatha87"
+  displayName: 'Configure Git'
+
+- checkout: self
+  persistCredentials: true
+
+- script: |
+    git clone https://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@github.com/Vishwanatha87/testdf.git
+    cd testdf
+    cp -r https://lbial2t4iegrdxpsri2o4zndvyjw7wqjmi77ihebbf5nvhlxfwba@dev.azure.com/Shellunext16934222145750807/Alternate_Fuel_Team_02/_git/AlternateFuel *.
+    git add .
+    git commit -m "Migrate ADF artifacts from Azure DevOps"
+    git -c http.extraheader="AUTHORIZATION: bearer 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" push
+  displayName: 'Migrate ADF Artifacts'
+
+
+- powershell: |
+    Write-Host "ADF artifacts have been migrated to GitHub successfully!"
+  displayName: 'Finalize Migration'

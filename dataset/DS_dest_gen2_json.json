@@ -1,0 +1,20 @@
+{
+	"name": "DS_dest_gen2_json",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_azure_gen2",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "raw",
+				"fileSystem": "parent"
+			}
+		},
+		"schema": {}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
